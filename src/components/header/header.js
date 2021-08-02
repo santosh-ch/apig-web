@@ -1,24 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './header.scss';
+import { Nav, Navbar, Container } from 'react-bootstrap'
 
-const Header = props => (
-	<div>This is a component called header.</div>
+const Header = () => (
+	<div>
+		<Navbar bg="dark" variant="dark">
+			<Container>
+				<Navbar.Brand href="/home">API Gateway Administration</Navbar.Brand>
+				<Nav className="me-auto justify-content-end">
+					<Nav.Link href="/list/all">All Jobs</Nav.Link>
+					<Nav.Link href="/list/active">Active Jobs</Nav.Link>
+					<Nav.Link href="/list/pending">Pending Jobs</Nav.Link>
+				</Nav>
+				<Navbar.Collapse className="justify-content-end">
+					<Navbar.Text>
+						User Name (Admin)
+					</Navbar.Text>
+				</Navbar.Collapse>
+			</Container>
+		</Navbar>
+	</div>
 );
-
-// todo: Unless you need to use lifecycle methods or local state,
-// write your component in functional form as above and delete
-// this section. 
-// class header extends React.Component {
-//   render() {
-//     return <div>This is a component called header.</div>;
-//   }
-// }
-
-const headerPropTypes = {
-	// always use prop types!
-};
-
-Header.propTypes = headerPropTypes;
 
 export default Header;

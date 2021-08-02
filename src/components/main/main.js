@@ -1,21 +1,24 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
-import Home from './components/home/home';
-import JobDetail from './components/job-detail/job-detail';
-import JobList from './components/job-list/job-list';
+import { Switch, Route, Redirect } from 'react-router-dom'
+import Home from '../home';
+import JobDetail from '../job-detail';
+import JobList from '../job-list';
 
-const Main = props => (<main>
+const Main = () => (
+	<main>
 		<Switch>
-		<Route exact path='/' component={Home}/>
-		<Route path='/list' component={JobList}/>
-		<Route path='/detail' component={JobDetail}/>
+			<Route exact path='/'>
+				<Redirect to="/home" />
+			</Route>
+			<Route path='/home' component={Home} />
+			<Route path='/list' component={lists} />
+			<Route path='/detail' component={JobDetail} />
 		</Switch>
 	</main>
 );
-
-const mainPropTypes = {
-};
-
-Main.propTypes = mainPropTypes;
-
+const lists = ({ match }) => (
+	<div>
+		<Route path={`${match.path}/:type`} component={JobList} />
+	</div>
+)
 export default Main;
