@@ -1,0 +1,182 @@
+[
+    {
+        "apig_jid": "centrify-modify-adgroup-20210802-150328-3275",
+        "job_created_epoch": 1627916608,
+        "job_created_timestamp": "2021-08-02T15:03:28.963027",
+        "job_duration_seconds": 42,
+        "job_finished_epoch": 1627916650,
+        "job_finished_timestamp": "2021-08-02T15:04:10.001700",
+        "owners": [
+            "bryan.w.hanson@healthpartners.com"
+        ],
+        "registeredVars": {
+            "localhost": {
+                "add_user_results": {
+                    "changed": true,
+                    "cmd": "/proj/centrify/bin/cfy_add_user_group.sh -a -v -d healthpartners.int -n c8337 -g cfy-RG-HP_Global-Login-SAILPOINT,cfy-UG-HP_Global-sailpoint -u unixadedit -k /proj/centrify/etc/unixadedit.keytab",
+                    "delta": "0:00:00.183997",
+                    "end": "2021-08-02 10:04:06.598523",
+                    "failed": false,
+                    "rc": 0,
+                    "start": "2021-08-02 10:04:06.414526",
+                    "stderr": "",
+                    "stderr_lines": [],
+                    "stdout": "nameUPN = c8337@healthpartners.int\n====> Processing Group cfy-RG-HP_Global-Login-SAILPOINT <====\nAdded c8337@healthpartners.int to group cfy-RG-HP_Global-Login-SAILPOINT@healthpartners.int.\n====> Processing Group cfy-UG-HP_Global-sailpoint <====\nAdded c8337@healthpartners.int to group cfy-UG-HP_Global-sailpoint@healthpartners.int.",
+                    "stdout_lines": [
+                        "nameUPN = c8337@healthpartners.int",
+                        "====> Processing Group cfy-RG-HP_Global-Login-SAILPOINT <====",
+                        "Added c8337@healthpartners.int to group cfy-RG-HP_Global-Login-SAILPOINT@healthpartners.int.",
+                        "====> Processing Group cfy-UG-HP_Global-sailpoint <====",
+                        "Added c8337@healthpartners.int to group cfy-UG-HP_Global-sailpoint@healthpartners.int."
+                    ]
+                },
+                "current_date": {
+                    "changed": true,
+                    "cmd": [
+                        "date"
+                    ],
+                    "delta": "0:00:00.496929",
+                    "end": "2021-08-02 15:04:05.552120",
+                    "failed": false,
+                    "rc": 0,
+                    "start": "2021-08-02 15:04:05.055191",
+                    "stderr": "",
+                    "stderr_lines": [],
+                    "stdout": "Mon Aug  2 15:04:05 UTC 2021",
+                    "stdout_lines": [
+                        "Mon Aug  2 15:04:05 UTC 2021"
+                    ]
+                },
+                "sn_api_call": {
+                    "cache_control": "no-cache,no-store,must-revalidate,max-age=-1",
+                    "changed": false,
+                    "connection": "close",
+                    "content_type": "application/json;charset=UTF-8",
+                    "cookies": {
+                        "BIGipServerpool_healthpartners": "411719690.34878.0000",
+                        "JSESSIONID": "5CD0F9393F9AFCF6F09B8A25B38EAE58",
+                        "glide_session_store": "DD41AC20DB7130101FD0B293E2961955",
+                        "glide_user_route": "glide.5fb47119f47c3e589b7032fc2a185a7c"
+                    },
+                    "cookies_string": "BIGipServerpool_healthpartners=411719690.34878.0000; JSESSIONID=5CD0F9393F9AFCF6F09B8A25B38EAE58; glide_session_store=DD41AC20DB7130101FD0B293E2961955; glide_user_route=glide.5fb47119f47c3e589b7032fc2a185a7c",
+                    "date": "Mon, 02 Aug 2021 15:04:09 GMT",
+                    "elapsed": 2,
+                    "expires": "0",
+                    "failed": false,
+                    "json": {
+                        "result": {
+                            "detail": "Record RITM0755225 with sys_id b27f1028dbb578106a039803e29619a3 updated successfully.",
+                            "message": "success"
+                        }
+                    },
+                    "msg": "OK (unknown bytes)",
+                    "pragma": "no-store,no-cache",
+                    "redirected": false,
+                    "server": "ServiceNow",
+                    "set_cookie": "JSESSIONID=5CD0F9393F9AFCF6F09B8A25B38EAE58; Path=/; HttpOnly; SameSite=None; Secure, glide_user=; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; HttpOnly; SameSite=None; Secure, glide_user_session=; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; HttpOnly; SameSite=None; Secure, glide_user_route=glide.5fb47119f47c3e589b7032fc2a185a7c; Max-Age=2147483647; Expires=Sat, 20-Aug-2089 18:18:14 GMT; Path=/; HttpOnly; SameSite=None; Secure, glide_session_store=DD41AC20DB7130101FD0B293E2961955; Max-Age=1800; Expires=Mon, 02-Aug-2021 15:34:07 GMT; Path=/; HttpOnly; SameSite=None; Secure, BIGipServerpool_healthpartners=411719690.34878.0000; path=/; Httponly; Secure; SameSite=None; Secure",
+                    "status": 200,
+                    "strict_transport_security": "max-age=63072000; includeSubDomains",
+                    "transfer_encoding": "chunked",
+                    "url": "https://healthpartners.service-now.com/api/hepa/centrify/update",
+                    "x_is_logged_in": "true",
+                    "x_transaction_id": "1541ac20db71"
+                }
+            }
+        },
+        "status": "successful",
+        "timeline": [
+            {
+                "epoch_time": 1627916608,
+                "event": "job created",
+                "status": "pending",
+                "time": "08-02-2021 15:03:28"
+            },
+            {
+                "epoch_time": 1627916627,
+                "event": "status changed",
+                "status": "started",
+                "time": "08-02-2021 15:03:47"
+            },
+            {
+                "epoch_time": 1627916650,
+                "event": "job completed",
+                "status": "successful",
+                "time": "08-02-2021 15:04:10"
+            }
+        ]
+    },
+    {
+        "apig_jid": "update-database-user-20210802-154111-4682",
+        "job_created_epoch": 1627918871,
+        "job_created_timestamp": "2021-08-02T15:41:11.454775",
+        "job_duration_seconds": 223,
+        "job_finished_epoch": 1627919094,
+        "job_finished_timestamp": "2021-08-02T15:44:54.470153",
+        "owners": [
+            "Lavanya.X.SubbaRao@HealthPartners.Com",
+            "Eswaramoorthy.X.Kaliappan@HealthPartners.Com",
+            "kevin.a.fischer@healthpartners.com",
+            "freligh.w.dalrymple@healthpartners.com",
+            "sravika.x.mandava@healthpartners.com",
+            "holden.c.smith@healthpartners.com"
+        ],
+        "status": "successful",
+        "timeline": [
+            {
+                "epoch_time": 1627918870,
+                "event": "job created",
+                "status": "pending",
+                "time": "08-02-2021 15:41:10"
+            },
+            {
+                "epoch_time": 1627918897,
+                "event": "status changed",
+                "status": "started",
+                "time": "08-02-2021 15:41:37"
+            },
+            {
+                "epoch_time": 1627919094,
+                "event": "job completed",
+                "status": "successful",
+                "time": "08-02-2021 15:44:54"
+            }
+        ]
+    },
+    {
+        "apig_jid": "update-database-user-20210802-154619-8286",
+        "job_created_epoch": 1627919179,
+        "job_created_timestamp": "2021-08-02T15:46:19.125313",
+        "job_duration_seconds": 199,
+        "job_finished_epoch": 1627919378,
+        "job_finished_timestamp": "2021-08-02T15:49:38.244633",
+        "owners": [
+            "Lavanya.X.SubbaRao@HealthPartners.Com",
+            "Eswaramoorthy.X.Kaliappan@HealthPartners.Com",
+            "kevin.a.fischer@healthpartners.com",
+            "freligh.w.dalrymple@healthpartners.com",
+            "sravika.x.mandava@healthpartners.com",
+            "holden.c.smith@healthpartners.com"
+        ],
+        "status": "successful",
+        "timeline": [
+            {
+                "epoch_time": 1627919178,
+                "event": "job created",
+                "status": "pending",
+                "time": "08-02-2021 15:46:18"
+            },
+            {
+                "epoch_time": 1627919181,
+                "event": "status changed",
+                "status": "started",
+                "time": "08-02-2021 15:46:21"
+            },
+            {
+                "epoch_time": 1627919378,
+                "event": "job completed",
+                "status": "successful",
+                "time": "08-02-2021 15:49:38"
+            }
+        ]
+    }
+]
