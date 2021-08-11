@@ -1,0 +1,122 @@
+{
+    "result": {
+        "jobs": {
+            "notify-20210729-144606-8501": {
+                "body": {
+                    "inputs": {
+                        "attributes": {
+                            "customer": "Chanchal",
+                            "sn_change": "CHG0098535",
+                            "sn_ritm": "RITM0754019",
+                            "target_server_name": "ms7585"
+                        },
+                        "recipients": [
+                            "kevin.a.fischer@healthpartners.com",
+                            "sravika.x.mandava@healthpartners.com",
+                            "holden.c.smith@healthpartners.com",
+                            "81a477fe.healthpartnersconnect.onmicrosoft.com@amer.teams.ms",
+                            "chanchal.s.sinharoy@healthpartners.com",
+                            "istservers@healthpartners.com"
+                        ],
+                        "template": "server_retirement_complete",
+                        "template_url": "https://gitlab.healthpartners.com/server-retirement/server-retirement-communications/-/raw/master/templates.json",
+                        "upstream_jid": "server-retirement-20210729-143545-1555"
+                    }
+                },
+                "constraints": {
+                    "servicenow": {
+                        "parent_record": "CHG0098535",
+                        "target_states": [
+                            "closed",
+                            "canceled",
+                            "cancelled"
+                        ],
+                        "task_short_descriptions": [
+                            "Remove Server From Network",
+                            "Remove Server From Nexpose"
+                        ],
+                        "terminate_states": {}
+                    }
+                },
+                "method": "POST",
+                "microfunction": "notify",
+                "owners": [
+                    "kevin.a.fischer@healthpartners.com",
+                    "sravika.x.mandava@healthpartners.com",
+                    "holden.c.smith@healthpartners.com",
+                    "freligh.w.dalrymple@healthpartners.com"
+                ],
+                "path": "https://kong.healthpartners.com/notify/",
+                "type": "job"
+            },
+            "update-ritm-stage-20210729-144651-5519": {
+                "body": {
+                    "inputs": {
+                        "meta": "Close CHG - we done",
+                        "parent_record": "CHG0098535",
+                        "stage_or_state": "closed",
+                        "upstream_jid": "server-retirement-20210729-143545-1555"
+                    }
+                },
+                "constraints": {
+                    "servicenow": {
+                        "parent_record": "CHG0098535",
+                        "target_states": [
+                            "closed",
+                            "canceled",
+                            "cancelled"
+                        ],
+                        "task_short_descriptions": [
+                            "Remove Server From Network",
+                            "Remove Server From Nexpose"
+                        ],
+                        "terminate_states": {}
+                    }
+                },
+                "method": "POST",
+                "microfunction": "update-ritm-stage",
+                "owners": [
+                    "holden.c.smith@healthpartners.com",
+                    "kevin.a.fischer@healthpartners.com",
+                    "sravika.x.mandava@healthpartners.com"
+                ],
+                "path": "https://kong.healthpartners.com/update-ritm-stage/",
+                "type": "job"
+            },
+            "update-ritm-stage-20210729-144651-8093": {
+                "body": {
+                    "inputs": {
+                        "meta": "Close RITM - we done",
+                        "parent_record": "RITM0754019",
+                        "stage_or_state": "complete",
+                        "upstream_jid": "server-retirement-20210729-143545-1555"
+                    }
+                },
+                "constraints": {
+                    "servicenow": {
+                        "parent_record": "CHG0098535",
+                        "target_states": [
+                            "closed",
+                            "canceled",
+                            "cancelled"
+                        ],
+                        "task_short_descriptions": [
+                            "Remove Server From Network",
+                            "Remove Server From Nexpose"
+                        ],
+                        "terminate_states": {}
+                    }
+                },
+                "method": "POST",
+                "microfunction": "update-ritm-stage",
+                "owners": [
+                    "holden.c.smith@healthpartners.com",
+                    "kevin.a.fischer@healthpartners.com",
+                    "sravika.x.mandava@healthpartners.com"
+                ],
+                "path": "https://kong.healthpartners.com/update-ritm-stage/",
+                "type": "job"
+            }
+        }
+    }
+}

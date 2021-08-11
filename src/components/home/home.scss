@@ -5,3 +5,40 @@
 .margin-top-50{
     margin-top: 50px;
 }
+
+
+.review-mode-mfs-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+  }
+  
+  .review-mode-mf-box {
+    background-color: grey;
+  }
+  
+  .rem-mf-span {
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  
+  .rem-mf-span:hover {
+    background: #bbb;
+  }
+  
+  .review-mode-mfs-container>p {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: lightgray;
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-right: 16px;
+  }
+  
+  .review-mode-mfs-container>p:hover {
+    background-color: #eee;
+  }

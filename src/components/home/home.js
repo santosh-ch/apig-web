@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Card, Col,Alert } from 'react-bootstrap';
+import ReviewModeList from "./review-mode-list";
 import './home.scss';
 
 const Home = () => (
@@ -37,6 +38,7 @@ const Home = () => (
 					</Card>
 				</Col>
 			</Row>
+			<ReviewModeList></ReviewModeList>
 		</Container>
 	</div>
 );
