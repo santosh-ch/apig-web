@@ -20,7 +20,7 @@ const ReviewModeList = () => {
     }, [])
 
     return (<Container>
-        <Row className="margin-top-100">
+        <Row className="margin-top-100 margin-bottom-50">
             <Card bg="light">
                 <Card.Body>
                     <Card.Title>Review Mode List </Card.Title>
