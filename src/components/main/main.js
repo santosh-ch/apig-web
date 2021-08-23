@@ -1,18 +1,21 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
-import Home from '../home';
+import HomeTabs from '../home-tabs';
 import JobDetail from '../job-detail';
 import JobList from '../job-list';
+import Settings from '../settings';
 
 const Main = () => (
 	<main>
 		<Switch>
 			<Route exact path='/'>
-				<Redirect to="/home" />
+				<Redirect to="/list/active" />
 			</Route>
-			<Route path='/home' component={Home} />
 			<Route path='/list' component={lists} />
 			<Route path='/detail' component={JobDetail} />
+			<Route path='/settings' component={Settings} />
+			<Route path='/hometabs' component={HomeTabs} />
+			<Route path="**"><Redirect to="/list/active" /></Route>
 		</Switch>
 	</main>
 );

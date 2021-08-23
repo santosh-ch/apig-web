@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Form, Breadcrumb, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './job-list.scss';
 import { useParams } from 'react-router-dom';
 import { JobListType } from '../../common/constants';
+import PropTypes from 'prop-types';
 
-const JobList = () => {
+const JobList = props => {
 	let { type } = useParams();
 	let [displayJobListType, setDisplayJobListType] = useState('');
 	const [duration, setDuration] = useState('1');
@@ -13,6 +14,9 @@ const JobList = () => {
 	const [jobSearchResults, setJobSearchResults] = useState([]);
 
 	useEffect(() => {
+		if (!type) {
+			type = props.type;
+		}
 		if (type.toString().toLowerCase().trim() === JobListType.Active.toLowerCase()) {
 			setDisplayJobListType(JobListType.Active);
 			getRunningJobs();
@@ -60,12 +64,7 @@ const JobList = () => {
 	}
 
 	return (
-		<Container>
-			<Breadcrumb className="margin-top-10">
-				<Breadcrumb.Item href="/home">Home</Breadcrumb.Item>
-
-				<Breadcrumb.Item active>{displayJobListType} Jobs</Breadcrumb.Item>
-			</Breadcrumb>
+		<Container className="margin-top-10">
 			{displayJobListType === JobListType.All ?
 				<Form>
 					<Row>
@@ -121,7 +120,15 @@ const JobList = () => {
 							<tbody>
 								{jobSearchResults.map(job =>
 									<tr key={job.apig_jid}>
-										<td><a href={"/details/" + job.apig_jid}>{job.apig_jid}</a></td>
+										<td>
+											<a href={"/details/" + job.apig_jid}>{job.apig_jid}
+												{job?.children_jobs ?
+													<div>
+														<span className="badge badge-primary">Conductor</span>
+													</div>
+													: ""}
+											</a>
+										</td>
 										<td>{job.job_created_timestamp}</td>
 										<td>{job.job_finished_timestamp}</td>
 									</tr>
@@ -134,5 +141,11 @@ const JobList = () => {
 		</Container>
 	);
 };
+
+const JobListPropTypes = {
+	type: PropTypes.string
+};
+
+JobList.propTypes = JobListPropTypes;
 
 export default JobList;

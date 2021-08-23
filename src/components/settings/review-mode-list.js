@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Form, Card } from 'react-bootstrap';
-import './home.scss';
+import './settings.scss';
 
 const ReviewModeList = () => {
     const [reviewModeList, setReviewModeList] = useState([])
@@ -20,7 +20,7 @@ const ReviewModeList = () => {
     }, [])
 
     return (<Container>
-        <Row className="margin-top-100 margin-bottom-50">
+        <Row className="margin-top-50">
             <Card bg="light">
                 <Card.Body>
                     <Card.Title>Review Mode List </Card.Title>
