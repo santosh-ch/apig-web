@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { JobListType } from '../../common/constants';
 import HomeTabs from '../home-tabs';
 import JobDetail from '../job-detail';
 import JobList from '../job-list';
@@ -9,13 +10,13 @@ const Main = () => (
 	<main>
 		<Switch>
 			<Route exact path='/'>
-				<Redirect to="/list/active" />
+				<Redirect to={"/list/"+JobListType.Active} />
 			</Route>
 			<Route path='/list' component={lists} />
 			<Route path='/detail' component={JobDetail} />
 			<Route path='/settings' component={Settings} />
 			<Route path='/hometabs' component={HomeTabs} />
-			<Route path="**"><Redirect to="/list/active" /></Route>
+			<Route path="**"><Redirect to={"/list/"+JobListType.Active} /></Route>
 		</Switch>
 	</main>
 );

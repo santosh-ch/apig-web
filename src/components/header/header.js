@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Navbar, Container, Nav, InputGroup, Form } from 'react-bootstrap'
 import { JobListType } from '../../common/constants';
 import './header.scss';
 
@@ -49,13 +49,11 @@ const Header = () => {
 								Settings
 							</Nav.Link>
 						</Nav.Item>
-						<Nav.Item>
-							<div className="search-container">
-								<form action="/action_page.php">
-									<input type="text" placeholder="Search.." name="search" />
-									<button type="submit"><i className="fa fa-search"></i></button>
-								</form>
-							</div>
+						<Nav.Item className="search-container">
+							<InputGroup>
+								<Form.Control type="text" placeholder="Search with exact JID..."/>
+								<InputGroup.Text><i className="fa fa-search"></i></InputGroup.Text>
+							</InputGroup>
 						</Nav.Item>
 					</Nav>
 					<Navbar.Collapse className="justify-content-end">

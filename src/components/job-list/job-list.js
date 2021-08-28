@@ -4,6 +4,7 @@ import './job-list.scss';
 import { useParams } from 'react-router-dom';
 import { JobListType } from '../../common/constants';
 import PropTypes from 'prop-types';
+import JobListTable from './job-list-table';
 
 const JobList = props => {
 	let { type } = useParams();
@@ -17,20 +18,20 @@ const JobList = props => {
 		if (!type) {
 			type = props.type;
 		}
-		if (type.toString().toLowerCase().trim() === JobListType.Active.toLowerCase()) {
-			setDisplayJobListType(JobListType.Active);
-			getRunningJobs();
+		if (type.toString().toLowerCase().trim() === JobListType.All.toLowerCase()) {
+			setDisplayJobListType(JobListType.All);
 		} else if (type.toString().toLowerCase().trim() === JobListType.Pending.toLowerCase()) {
 			setDisplayJobListType(JobListType.Pending);
-			getRunningJobs();
+			getQueuedJobs();
 		} else {
-			setDisplayJobListType(JobListType.All);
+			setDisplayJobListType(JobListType.Active);
+			getRunningJobs();
 		}
 	}, [])
 
 	function searchJobs() {
-		// const filterUrl = "/api/v1/search/?days=" + duration + "&status=" + status;
-		fetch('../api/search.json').then(response => {
+		const filterUrl = "/api/v1/search/?days=" + duration + "&status=" + status;
+		fetch(filterUrl).then(response => {
 			return response.json().then((response) => {
 				if (response != null && response.data != null && response.data.length > 0) {
 					if (searchString && searchString != '') {
@@ -53,6 +54,20 @@ const JobList = props => {
 		fetch('../api/running.json').then(response => {
 			return response.json().then((response) => {
 				if (response != null && response.result != null && response.result.jobs != null && response.result.jobs.length > 0) {
+					setJobSearchResults(response.result.jobs);
+				}
+			})
+		}).catch(
+			function (err) {
+				console.log(err)
+			}
+		)
+	}
+
+	function getQueuedJobs() {
+		fetch('../api/queue.json').then(response => {
+			return response.json().then((response) => {
+				if (response != null && response.result != null && response.result.jobs != null) {
 					setJobSearchResults(response.result.jobs);
 				}
 			})
@@ -103,41 +118,7 @@ const JobList = props => {
 					</Row>
 				</Form>
 				: <h3>{displayJobListType} Jobs ({jobSearchResults?.length})</h3>}
-			<Row>
-				<Col>
-					<table className="table table-responsive margin-top-10">
-						<thead>
-							<tr className={!jobSearchResults?.length > 0 ? 'hide' : ''} >
-								<th>JID</th>
-								<th>Created On</th>
-								<th>Completed On</th>
-							</tr>
-						</thead>
-						{!jobSearchResults?.length > 0 ?
-							<tbody>
-								0 Jobs Found
-							</tbody> :
-							<tbody>
-								{jobSearchResults.map(job =>
-									<tr key={job.apig_jid}>
-										<td>
-											<a href={"/details/" + job.apig_jid}>{job.apig_jid}
-												{job?.children_jobs ?
-													<div>
-														<span className="badge badge-primary">Conductor</span>
-													</div>
-													: ""}
-											</a>
-										</td>
-										<td>{job.job_created_timestamp}</td>
-										<td>{job.job_finished_timestamp}</td>
-									</tr>
-								)}
-							</tbody>
-						}
-					</table>
-				</Col>
-			</Row>
+			<JobListTable jobSearchResults={jobSearchResults} type={type}></JobListTable>
 		</Container>
 	);
 };
