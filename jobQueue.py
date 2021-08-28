@@ -52,15 +52,15 @@ def getApigHost():
 
 apigHost = getApigHost()
 
-def readLocalJobsFile():
-    """Unpickle the jobQueuePickleFile and return it as a dictionary."""
-    try:
-        f = open(jobQueuePickleFile, 'rb')
-        jobQueue = pickle.load(f)
-        f.close()
-        return jobQueue
-    except:
-        return {}
+# def readLocalJobsFile():
+#     """Unpickle the jobQueuePickleFile and return it as a dictionary."""
+#     try:
+#         f = open(jobQueuePickleFile, 'rb')
+#         jobQueue = pickle.load(f)
+#         f.close()
+#         return jobQueue
+#     except:
+#         return {}
 
 
 def readRunningJobsFile():
@@ -73,20 +73,20 @@ def readRunningJobsFile():
     except:
         return []
 
-def readMicrofunctionsFile():
-    """Unpickle the runningJobsPickleFile and return it as a list."""
-    try:
-        f = open(microfunctionsListPickleFile, 'rb')
-        l = pickle.load(f)
-        f.close()
-        return l
-    except:
-        return ["this-will-never-work", "notify", "hello-world", "asp-infrastructure"]
+# def readMicrofunctionsFile():
+#     """Unpickle the runningJobsPickleFile and return it as a list."""
+#     try:
+#         f = open(microfunctionsListPickleFile, 'rb')
+#         l = pickle.load(f)
+#         f.close()
+#         return l
+#     except:
+#         return ["this-will-never-work", "notify", "hello-world", "asp-infrastructure"]
 
 
 def getRunningJobsFromPyjobs():
     try:
-        url = 'http://kong:8000/jobs/api/v1/search/?days=90&status=started&server=' + apigHost
+        url = 'http://kong.healthpartners.com/jobs/api/v1/search/?days=90&status=started&server=' + "kong.healthpartners.com"
         retries = urllib3.Retry(
             total=101, backoff_factor=0.5, status_forcelist=frozenset([500, 501, 502, 503]))
         http = urllib3.PoolManager(retries=retries, cert_reqs='CERT_NONE')
@@ -100,63 +100,63 @@ def getRunningJobsFromPyjobs():
     except:
         pass
 
-def getMicrofunctionListFromPyjobs():
-    try:
-        url = 'http://kong:8000/jobs/api/v1/microfunction/'
-        retries = urllib3.Retry(
-            total=101, backoff_factor=0.5, status_forcelist=frozenset([500, 501, 502, 503]))
-        http = urllib3.PoolManager(retries=retries, cert_reqs='CERT_NONE')
-        r = http.request('GET', url)
-        microfunctionListData = json.loads(r.data)  # a list of strings (job objects)
-        for m in list(microfunctionListData):
-            if "/" in m:
-                microfunctionListData.remove(m)
-        """Store instance of jobQueue as a system file."""
-        f = open(microfunctionsListPickleFile, 'wb')
-        pickle.dump(microfunctionsListPickleFile, f)
-        f.close()
-    except:
-        pass
+# def getMicrofunctionListFromPyjobs():
+#     try:
+#         url = 'http://kong:8000/jobs/api/v1/microfunction/'
+#         retries = urllib3.Retry(
+#             total=101, backoff_factor=0.5, status_forcelist=frozenset([500, 501, 502, 503]))
+#         http = urllib3.PoolManager(retries=retries, cert_reqs='CERT_NONE')
+#         r = http.request('GET', url)
+#         microfunctionListData = json.loads(r.data)  # a list of strings (job objects)
+#         for m in list(microfunctionListData):
+#             if "/" in m:
+#                 microfunctionListData.remove(m)
+#         """Store instance of jobQueue as a system file."""
+#         f = open(microfunctionsListPickleFile, 'wb')
+#         pickle.dump(microfunctionsListPickleFile, f)
+#         f.close()
+#     except:
+#         pass
 
-def getJobsFromASE():
-    try:
-        url = 'http://kong:8000/jobs?action=pendingjobs&server=' + apigHost
-        retries = urllib3.Retry(total=101, backoff_factor=0.5, status_forcelist=frozenset([500, 501, 502, 503]))
-        http = urllib3.PoolManager(retries=retries, cert_reqs='CERT_NONE')
-        r = http.request('GET', url)
-        pendingjobsData = json.loads(r.data)
-        queue = {}
-        if r.status == 200:
-            for each in pendingjobsData:
-                for jid in each:
-                    jobData = each[jid]
-                    constraints = {}
-                    if jobData.get('constraints'):
-                        for constraint in jobData.get('constraints'):
-                            constraints[constraint['type']] = constraint['attributes']
-                        inputs =  {}
-                        if jobData.get('apig-payload'):
-                            if jobData.get('apig-payload').get('inputs'):
-                                inputs["inputs"] = jobData.get('apig-payload').get('inputs')
-                        else:
-                            inputs["inputs"] = {}
+# def getJobsFromASE():
+#     try:
+#         url = 'http://kong:8000/jobs?action=pendingjobs&server=' + apigHost
+#         retries = urllib3.Retry(total=101, backoff_factor=0.5, status_forcelist=frozenset([500, 501, 502, 503]))
+#         http = urllib3.PoolManager(retries=retries, cert_reqs='CERT_NONE')
+#         r = http.request('GET', url)
+#         pendingjobsData = json.loads(r.data)
+#         queue = {}
+#         if r.status == 200:
+#             for each in pendingjobsData:
+#                 for jid in each:
+#                     jobData = each[jid]
+#                     constraints = {}
+#                     if jobData.get('constraints'):
+#                         for constraint in jobData.get('constraints'):
+#                             constraints[constraint['type']] = constraint['attributes']
+#                         inputs =  {}
+#                         if jobData.get('apig-payload'):
+#                             if jobData.get('apig-payload').get('inputs'):
+#                                 inputs["inputs"] = jobData.get('apig-payload').get('inputs')
+#                         else:
+#                             inputs["inputs"] = {}
 
-                        queue[jid] = {
-                            "method": "POST", 
-                            "constraints": constraints, 
-                            "body": inputs, 
-                            "microfunction": jobData.get('microfunction'),
-                            "owners": jobData.get('owners'),
-                            "type": jobData.get('type'),
-                            "path": jobData.get('orig-req-path')
-                        }
+#                         queue[jid] = {
+#                             "method": "POST", 
+#                             "constraints": constraints, 
+#                             "body": inputs, 
+#                             "microfunction": jobData.get('microfunction'),
+#                             "owners": jobData.get('owners'),
+#                             "type": jobData.get('type'),
+#                             "path": jobData.get('orig-req-path')
+#                         }
 
-        """Store instance of jobQueue as a system file."""
-        f = open(jobQueuePickleFile, 'wb')
-        pickle.dump(queue, f)
-        f.close()
-    except:
-        pass
+#         """Store instance of jobQueue as a system file."""
+#         f = open(jobQueuePickleFile, 'wb')
+#         pickle.dump(queue, f)
+#         f.close()
+#     except:
+#         pass
 
 
 def restartFetcher():
