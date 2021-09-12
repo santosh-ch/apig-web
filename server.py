@@ -8,15 +8,15 @@ import os
 from jobQueue import readRunningJobsFile, restartFetcher
 
 
-# def getApigHost():
-#     try:
-#         apigHost = os.environ['APIG_SERVER']
-#     except:
-#         apigHost = "kong.healthpartners.com"
-#     return apigHost
+def getApigHost():
+    try:
+        apigHost = os.environ['APIG_SERVER']
+    except:
+        apigHost = "kong.healthpartners.com"
+    return apigHost
 
 
-# app = Flask(__name__)
+app = Flask(__name__)
 # #############################
 # ######## DOM OBJECTS ########
 # #############################
