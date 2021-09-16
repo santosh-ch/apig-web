@@ -117,7 +117,7 @@ const JobList = props => {
 						</Col>
 					</Row>
 				</Form>
-				: <h3>{displayJobListType} Jobs ({jobSearchResults?.length})</h3>}
+				: <h3>{displayJobListType} Jobs ({jobSearchResults?.length || Object.keys(jobSearchResults||{}).length})</h3>}
 			<JobListTable jobSearchResults={jobSearchResults} type={type}></JobListTable>
 		</Container>
 	);

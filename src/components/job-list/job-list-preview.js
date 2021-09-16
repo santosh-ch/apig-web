@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Offcanvas } from 'react-bootstrap';
+import { Offcanvas, Row } from 'react-bootstrap';
 import './job-list.scss';
 import PropTypes from 'prop-types';
 
 const JobListPreview = props => {
     const [show, setShow] = useState(false);
-    const [jobDetails,setJobDetails] = useState({});
+    const [jobDetails, setJobDetails] = useState({});
 
     useEffect(() => {
         setShow(props.jobName ? true : false);
@@ -22,14 +22,30 @@ const JobListPreview = props => {
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Job Information</Offcanvas.Title>
             </Offcanvas.Header>
-            { jobDetails ?
+            {jobDetails ?
                 <Offcanvas.Body>
-                    <a>{props.jobName}</a>
-                    <h3>Quick Actions</h3>
-                    <h3>Micro Functions</h3>
-                    <div>{jobDetails.microfunction}</div>
+                    <Row className="preview">
+                        <a href={"/jobs/" + props.jobName}>{props.jobName}</a>
+
+                        <h6 className="standardMargin">Quick Actions</h6>
+                        
+                        <h6 className="standardMargin">Micro Function</h6>
+                        <p>
+                            <a href={"/microfunctions/" + jobDetails['microfunction']}>{jobDetails['microfunction']}</a>
+                        </p>
+                        
+                        <h6 className="standardMargin">Request</h6>
+                        <p>
+                            <samp>{jobDetails['method']} {jobDetails['path']}</samp>
+                        </p>
+
+                        <h6 className="standardMargin">Inputs</h6>
+                        <pre className="code"><code>{JSON.stringify(jobDetails['body'] ? jobDetails['body']['inputs'] : '', null, 2)}</code></pre>
+                        
+                        <h6 className="standardMargin">Active Constraints</h6>
+                    </Row>
                 </Offcanvas.Body>
-            : ''}
+                : ''}
         </Offcanvas>
     )
 
@@ -37,7 +53,7 @@ const JobListPreview = props => {
 
 
 const JobListPropTypes = {
-    jobDetails : PropTypes.Object,
+    jobDetails: PropTypes.Object,
     jobName: PropTypes.string,
     setShowPreview: PropTypes.func
 };
