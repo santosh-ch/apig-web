@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import './job-list.scss';
 import { JobListType } from '../../common/constants';
 import PropTypes from 'prop-types';
@@ -8,12 +8,24 @@ import JobListPreview from './job-list-preview';
 
 const JobListTable = props => {
 
-    const [jobSearchResults, setJobSearchResults] = useState([])
+    const [jobSearchResults, setJobSearchResults] = useState([]);
+    const [previewDetails, setPreviewDetails] = useState(null);
+    const [previewJobName, setPreviewJobName] = useState('');
     const type = props.type;
 
     useEffect(() => {
-        setJobSearchResults(props.jobSearchResults)
+        setJobSearchResults(props.jobSearchResults);
     }, [props.jobSearchResults])
+
+    function setShowPreview(e, job, value) {
+        if(value){
+            setPreviewDetails({...jobSearchResults[job]});
+            setPreviewJobName(job);
+        } else {
+            setPreviewDetails(null);
+            setPreviewJobName('');
+        }
+    }
 
     return (<Row>
         <Col>
@@ -24,8 +36,10 @@ const JobListTable = props => {
                         <th>Created On</th>
                         <th>Completed On</th>
                     </tr>
-                    <tr className={!jobSearchResults?.length > 0 || type !== JobListType.Pending.toLowerCase() ? 'hide' : ''} >
+                    <tr className={!jobSearchResults || type !== JobListType.Pending.toLowerCase() ? 'hide' : ''} >
                         <th>JID</th>
+                        <th>MicroFunction</th>
+                        <th></th>
                     </tr>
                 </thead>
                 {type !== JobListType.Pending.toLowerCase() ?
@@ -65,9 +79,11 @@ const JobListTable = props => {
                                                         <span className="badge badge-primary">{constraint}</span>
                                                     </div>)
                                                 : ""}
-
-                                        <JobListPreview jobDetails={jobSearchResults[job]} jobName={job}></JobListPreview>
                                         </a>
+                                    </td>
+                                    <td>{jobSearchResults[job]['microfunction']}</td>
+                                    <td>
+                                        <Button variant="link" onClick={e => setShowPreview(e, job, true)}>Preview</Button>
                                     </td>
                                 </tr>
                             )}
@@ -75,6 +91,7 @@ const JobListTable = props => {
                 }
             </table>
         </Col>
+        <JobListPreview jobDetails={previewDetails} jobName={previewJobName} setShowPreview={setShowPreview}></JobListPreview>
     </Row>
     )
 }
