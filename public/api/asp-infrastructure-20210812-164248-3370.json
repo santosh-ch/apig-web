@@ -1,0 +1,630 @@
+{
+    "data" : {
+        "apig-payload": {
+            "inputs": {
+                "hostname": "EIEDIWAMBDEV01",
+                "memory": 8,
+                "os": "w2019",
+                "production": false,
+                "purpose": "app",
+                "sn_application": "Epic - Interconnect",
+                "sn_req_ritm": "RITM0759213"
+            }
+        },
+        "apig_jid": "asp-infrastructure-20210812-164248-3370",
+        "apig_server": "kong.healthpartners.com",
+        "build_params": {
+            "apig_jid": "asp-infrastructure-20210812-164248-3370",
+            "hostname": "EIEDIWAMBDEV01",
+            "memory": 8,
+            "newhostname": "eiediwambdev01",
+            "newvm_dhcpip": "10.170.191.139",
+            "os": "w2019",
+            "production": false,
+            "purpose": "app",
+            "reboot_schedule": "Weekly | Monday  | 05:00:00 | ",
+            "registered_flavor": "w2019_app_dev",
+            "site": "1708",
+            "sn_application": "Epic - Interconnect",
+            "sn_dept": null,
+            "sn_req_ritm": "RITM0759213",
+            "sn_requester": "Cathy McLean (cmmclean)",
+            "sn_requester_email": "cathy.m.mclean@healthpartners.com",
+            "sn_requester_firstname": "Cathy",
+            "sn_requester_mgr": null
+        },
+        "children_jobs": {
+            "build_vm_shell": {
+                "all_jids": {
+                    "build-vmware-shell-20210812-164709-7759": "successful"
+                },
+                "begin_wait_time": 1628786829,
+                "jid": "build-vmware-shell-20210812-164709-7759",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "create_vm_disks_windows": {
+                "all_jids": {
+                    "create-vm-disks-20210812-181510-3550": "successful"
+                },
+                "begin_wait_time": 1628792110,
+                "jid": "create-vm-disks-20210812-181510-3550",
+                "retries_remaining": 2,
+                "status": "completed"
+            },
+            "foglight": {
+                "all_jids": {},
+                "jid": "",
+                "retries_remaining": 0,
+                "status": "waiting"
+            },
+            "get_vm_flavor": {
+                "all_jids": {
+                    "vm-flavor-name-20210812-164344-8770": "successful"
+                },
+                "begin_wait_time": 1628786624,
+                "jid": "vm-flavor-name-20210812-164344-8770",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "install_windows": {
+                "all_jids": {
+                    "install-windows-20210812-165156-1496": "successful"
+                },
+                "begin_wait_time": 1628787116,
+                "jid": "install-windows-20210812-165156-1496",
+                "retries_remaining": 3,
+                "status": "completed"
+            },
+            "notify_customer_of_received": {
+                "all_jids": {},
+                "jid": "notify-20210812-164345-7010",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "notify_customer_of_started": {
+                "all_jids": {},
+                "jid": "notify-20210812-165157-3582",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_close_task_configure_commvault": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-182304-7372": "successful"
+                },
+                "begin_wait_time": 1628792584,
+                "jid": "manage-servicenow-tasks-20210812-182304-7372",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_close_task_configure_foglight": {
+                "all_jids": {},
+                "jid": "",
+                "retries_remaining": 0,
+                "status": "waiting"
+            },
+            "sn_close_task_initialize_vm": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-165155-1040": "successful"
+                },
+                "begin_wait_time": 1628787115,
+                "jid": "manage-servicenow-tasks-20210812-165155-1040",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_close_task_install_os_windows": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-182242-4208": "successful"
+                },
+                "begin_wait_time": 1628792562,
+                "jid": "manage-servicenow-tasks-20210812-182242-4208",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_close_task_update_cmdb": {
+                "all_jids": {},
+                "jid": "",
+                "retries_remaining": 0,
+                "status": "waiting"
+            },
+            "sn_discovery": {
+                "all_jids": {
+                    "run-sn-discovery-20210812-182239-1216": "started"
+                },
+                "begin_wait_time": 1628792559,
+                "jid": "run-sn-discovery-20210812-182239-1216",
+                "retries_remaining": 2,
+                "status": "running"
+            },
+            "sn_ritm_parse": {
+                "all_jids": {
+                    "sn-ritm-parse-20210812-164302-8361": "successful"
+                },
+                "begin_wait_time": 1628786582,
+                "jid": "sn-ritm-parse-20210812-164302-8361",
+                "retries_remaining": 2,
+                "status": "completed"
+            },
+            "sn_start_task_configure_commvault": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-182240-9400": "successful"
+                },
+                "begin_wait_time": 1628792560,
+                "jid": "manage-servicenow-tasks-20210812-182240-9400",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_start_task_configure_foglight_and_logrhythm": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-182238-7584": "successful"
+                },
+                "begin_wait_time": 1628792558,
+                "jid": "manage-servicenow-tasks-20210812-182238-7584",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_start_task_initialize_vm": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-164301-3201": "successful"
+                },
+                "begin_wait_time": 1628786581,
+                "jid": "manage-servicenow-tasks-20210812-164301-3201",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_start_task_install_os_windows": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-165154-8055": "successful"
+                },
+                "begin_wait_time": 1628787114,
+                "jid": "manage-servicenow-tasks-20210812-165154-8055",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_start_task_update_cmdb_win": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-182241-1899": "successful"
+                },
+                "begin_wait_time": 1628792561,
+                "jid": "manage-servicenow-tasks-20210812-182241-1899",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "sn_update_cmdb": {
+                "all_jids": {},
+                "jid": "",
+                "retries_remaining": 0,
+                "status": "waiting"
+            },
+            "sn_update_task_initialize_vm": {
+                "all_jids": {
+                    "manage-servicenow-tasks-20210812-165153-9708": "successful"
+                },
+                "begin_wait_time": 1628787113,
+                "jid": "manage-servicenow-tasks-20210812-165153-9708",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "validate_hostname": {
+                "all_jids": {
+                    "get-and-register-hostname-20210812-164426-841": "successful"
+                },
+                "begin_wait_time": 1628786666,
+                "jid": "get-and-register-hostname-20210812-164426-841",
+                "retries_remaining": 0,
+                "status": "completed"
+            },
+            "win_install_cleanup": {
+                "all_jids": {
+                    "win-install-cleanup-20210812-182035-7036": "successful"
+                },
+                "begin_wait_time": 1628792435,
+                "jid": "win-install-cleanup-20210812-182035-7036",
+                "retries_remaining": 2,
+                "status": "completed"
+            },
+            "win_post_install": {
+                "all_jids": {
+                    "win-post-install-20210812-170003-9606": "successful"
+                },
+                "begin_wait_time": 1628787603,
+                "jid": "win-post-install-20210812-170003-9606",
+                "retries_remaining": 1,
+                "status": "completed"
+            }
+        },
+        "constraints": [],
+        "couchBaseRecordUuid": "d76b557c-7563-498a-9c59-9a9126068d9f",
+        "downstream_response": {
+            "allow_simultaneous": true,
+            "artifacts": {},
+            "controller_node": "",
+            "created": "2021-08-12T16:42:53.443145Z",
+            "description": "Automated Server Provisioning.  Uses py conductor for orchestration of ASP micro functions    .",
+            "diff_mode": false,
+            "elapsed": 0.0,
+            "event_processing_finished": false,
+            "execution_node": "",
+            "extra_vars": "{\"conductor\": \"asp_infrastructure\", \"hostname\": \"EIEDIWAMBDEV01\", \"memory\": 8, \"os\": \"w2019    \", \"production\": false, \"purpose\": \"app\", \"sn_application\": \"Epic - Interconnect\", \"sn_req_ritm    \": \"RITM0759213\", \"apig_jid\": \"asp-infrastructure-20210812-164248-3370\", \"apig_host\": \"kong    .healthpartners.com\"}",
+            "failed": false,
+            "finished": null,
+            "force_handlers": false,
+            "forks": 0,
+            "id": 26280,
+            "ignored_fields": {},
+            "instance_group": null,
+            "inventory": 5,
+            "job": 26280,
+            "job_args": "",
+            "job_cwd": "",
+            "job_env": {},
+            "job_explanation": "",
+            "job_slice_count": 1,
+            "job_slice_number": 0,
+            "job_tags": "",
+            "job_template": 146,
+            "job_type": "run",
+            "launch_type": "manual",
+            "limit": "macys-poc",
+            "modified": "2021-08-12T16:42:53.488080Z",
+            "name": "prd-asp-infrastructure",
+            "passwords_needed_to_start": [],
+            "playbook": "site.yml",
+            "project": 144,
+            "related": {
+                "activity_stream": "/api    /v2/jobs/26280/activity_stream/",
+                "cancel": "/api/v2/jobs/26280/cancel/",
+                "create_schedule": "/api/v2/jobs    /26280/create_schedule/",
+                "created_by": "/api/v2/users/3/",
+                "credentials": "/api/v2/jobs/26280/credentials    /",
+                "extra_credentials": "/api/v2/jobs/26280/extra_credentials/",
+                "inventory": "/api/v2/inventories/5/",
+                "job_events": "/api/v2/jobs/26280/job_events/",
+                "job_host_summaries": "/api/v2/jobs/26280/job_host_summaries/",
+                "job_template": "/api/v2/job_templates/146/",
+                "labels": "/api/v2/jobs/26280/labels/",
+                "modified_by": "/api/v2/users/3/",
+                "notifications": "/api/v2/jobs/26280/notifications/",
+                "project": "/api/v2/projects/144/",
+                "relaunch": "/api    /v2/jobs/26280/relaunch/",
+                "stdout": "/api/v2/jobs/26280/stdout/",
+                "unified_job_template": "/api/v2/job_templates    /146/"
+            },
+            "result_traceback": "",
+            "scm_branch": "",
+            "scm_revision": "",
+            "skip_tags": "",
+            "start_at_task": "",
+            "started": null,
+            "status": "pending",
+            "summary_fields": {
+                "created_by": {
+                    "first_name": "",
+                    "id": 3,
+                    "last_name": "",
+                    "username": "sn-asp"
+                },
+                "credentials": [
+                    {
+                        "cloud": false,
+                        "description": "",
+                        "id": 6,
+                        "kind": "ssh",
+                        "name": "macys_poc"
+                    },
+                    {
+                        "cloud": false,
+                        "description": "",
+                        "id": 7,
+                        "kind": "vault",
+                        "name": "py_conductor_vault"
+                    }
+                ],
+                "extra_credentials": [],
+                "inventory": {
+                    "description": "Runner with Python 3",
+                    "groups_with_active_failures": 0,
+                    "has_active_failures": false,
+                    "has_inventory_sources": true,
+                    "hosts_with_active_failures": 0,
+                    "id": 5,
+                    "inventory_sources_with_failures": 0,
+                    "kind": "",
+                    "name": "asp_runner",
+                    "organization_id": 1,
+                    "total_groups": 1,
+                    "total_hosts": 2,
+                    "total_inventory_sources": 1
+                },
+                "job_template": {
+                    "description": "Automated Server Provisioning.  Uses py conductor for orchestration of ASP micro functions.",
+                    "id": 146,
+                    "name": "prd-asp-infrastructure"
+                },
+                "labels": {
+                    "count": 0,
+                    "results": []
+                },
+                "modified_by": {
+                    "first_name": "",
+                    "id": 3,
+                    "last_name": "",
+                    "username": "sn-asp"
+                },
+                "project": {
+                    "description": "Automated Server Provisioning 2.",
+                    "id": 144,
+                    "name": "asp-infrastructure",
+                    "scm_type": "git",
+                    "status": "successful"
+                },
+                "unified_job_template": {
+                    "description": "Automated Server Provisioning.  Uses py conductor for orchestration of ASP micro functions.",
+                    "id": 146,
+                    "name": "prd-asp-infrastructure",
+                    "unified_job_type": "job"
+                },
+                "user_capabilities": {
+                    "delete": true,
+                    "start": true
+                }
+            },
+            "timeout": 0,
+            "type": "job",
+            "unified_job_template": 146,
+            "url": "/api/v2/jobs/26280/",
+            "use_fact_cache": false,
+            "verbosity": 0,
+            "webhook_credential": null,
+            "webhook_guid": "",
+            "webhook_service": ""
+        },
+        "event": "sn_close_task_configure_commvault     successful (manage-servicenow-tasks-20210812-182304-7372)",
+        "expected_http_response_codes": [
+            "200",
+            "201"
+        ],
+        "headers": "gAAAAABhFU-IXpxziM_F610eT6J4wqPSplNQHq5QDqy6eBYfaUQcTCsVGUNk0HKYVBkmWTELpsnElhNt54nzd6i    Kl_jCzUQ4YvVw2ce1TqtwMpKfzbJB9KhDTMjurlWXsawPsacjVx6JUFYJZjjIhz_tvcLpMDuxPWfBMsBW4MwsPKOJNOxh1F5Glr-    FdHtcLRgXx_SA4ZjfwSyXEKdTJiksaNuTST-k-R7pnEiKBW_2_l5YuaWeddo6CP3QhP2_wI-pPE_OJF1_1JverH9lI8Vt3ChgVEZThek0Eu4PoVpXNF1i_P4t-LuitCB4-pYmdWowZa3bkLti",
+        "job_created_epoch": 1628786568,
+        "job_created_timestamp": "2021-08-12T16:42:48.867966",
+        "job_duration_seconds": 7375,
+        "job_finished_epoch": 1628793943,
+        "job_finished_timestamp": "2021-08-12T18:45:43.270962",
+        "microfunction": "asp-infrastructure",
+        "min_approvals_required": "1",
+        "orig-req-path": "https://kong.healthpartners.com/asp-infrastructure    /",
+        "owners": [
+            "kevin.a.fischer@healthpartners.com",
+            "sravika.x.mandava@healthpartners.com",
+            "holden.c.smith    @healthpartners.com",
+            "freligh.w.dalrymple@healthpartners.com"
+        ],
+        "requires_approval": false,
+        "status": "started",
+        "timeline": [
+            {
+                "epoch_time": 1628786568,
+                "event": "job created",
+                "status": "pending",
+                "time": "08-12-2021 16: 42: 48"
+            },
+            {
+                "epoch_time": 1628786573,
+                "event": "status changed",
+                "status": "started",
+                "time": "08-12-2021 16: 42    : 53"
+            },
+            {
+                "epoch_time": 1628786581,
+                "event": "Started sn_start_task_initialize_vm (manage-servicenow-tasks-20210812-164301-3201    )",
+                "status": "started",
+                "time": "08-12-2021 16: 43: 01"
+            },
+            {
+                "epoch_time": 1628786582,
+                "event": "Started sn_ritm_parse     (sn-ritm-parse-20210812-164302-8361)",
+                "status": "started",
+                "time": "08-12-2021 16: 43: 02"
+            },
+            {
+                "epoch_time": 1628786623,
+                "event": "sn_start_task_initialize_vm successful (manage-servicenow-tasks-20210812-164301-3201    )",
+                "status": "started",
+                "time": "08-12-2021 16: 43: 43"
+            },
+            {
+                "epoch_time": 1628786623,
+                "event": "sn_ritm_parse successful     (sn-ritm-parse-20210812-164302-8361)",
+                "status": "started",
+                "time": "08-12-2021 16: 43: 43"
+            },
+            {
+                "epoch_time": 1628786624,
+                "event": "Started get_vm_flavor (vm-flavor-name-20210812-164344-8770)",
+                "status": "started",
+                "time": "08-12-2021 16:43:44"
+            },
+            {
+                "epoch_time": 1628786665,
+                "event": "get_vm_flavor successful (vm-flavor-name-20210812-164344-8770    )",
+                "status": "started",
+                "time": "08-12-2021 16: 44: 25"
+            },
+            {
+                "epoch_time": 1628786666,
+                "event": "Started validate_hostname     (get-and-register-hostname-20210812-164426-841)",
+                "status": "started",
+                "time": "08-12-2021 16: 44: 26"
+            },
+            {
+                "epoch_time": 1628786828,
+                "event": "validate_hostname successful (get-and-register-hostname-20210812-164426-841)",
+                "status": "started",
+                "time": "08-12-2021 16:47:08"
+            },
+            {
+                "epoch_time": 1628786829,
+                "event": "Started build_vm_shell (build-vmware-shell-20210812-164709-7759    )",
+                "status": "started",
+                "time": "08-12-2021 16: 47: 09"
+            },
+            {
+                "epoch_time": 1628787113,
+                "event": "build_vm_shell     successful (build-vmware-shell-20210812-164709-7759)",
+                "status": "started",
+                "time": "08-12-2021 16: 51: 53"
+            },
+            {
+                "epoch_time": 1628787113,
+                "event": "Started sn_update_task_initialize_vm (manage-servicenow-tasks-20210812-165153-9708    )",
+                "status": "started",
+                "time": "08-12-2021 16: 51: 53"
+            },
+            {
+                "epoch_time": 1628787114,
+                "event": "Started sn_start_task_install_os_windows     (manage-servicenow-tasks-20210812-165154-8055)",
+                "status": "started",
+                "time": "08-12-2021 16: 51: 54"
+            },
+            {
+                "epoch_time": 1628787115,
+                "event": "Started sn_close_task_initialize_vm (manage-servicenow-tasks-20210812-165155-1040    )",
+                "status": "started",
+                "time": "08-12-2021 16: 51: 55"
+            },
+            {
+                "epoch_time": 1628787116,
+                "event": "Started install_windows     (install-windows-20210812-165156-1496)",
+                "status": "started",
+                "time": "08-12-2021 16: 51: 56"
+            },
+            {
+                "epoch_time": 1628787157,
+                "event": "sn_update_task_initialize_vm successful (manage-servicenow-tasks-20210812-165153-9708    )",
+                "status": "started",
+                "time": "08-12-2021 16: 52: 37"
+            },
+            {
+                "epoch_time": 1628787157,
+                "event": "sn_start_task_install_os_windows     successful (manage-servicenow-tasks-20210812-165154-8055)",
+                "status": "started",
+                "time": "08-12-2021 16    : 52: 37"
+            },
+            {
+                "epoch_time": 1628787158,
+                "event": "sn_close_task_initialize_vm successful (manage-servicenow-tasks-20210812-165155-1040    )",
+                "status": "started",
+                "time": "08-12-2021 16: 52: 38"
+            },
+            {
+                "epoch_time": 1628787602,
+                "event": "install_windows     successful (install-windows-20210812-165156-1496)",
+                "status": "started",
+                "time": "08-12-2021 17: 00: 02"
+            },
+            {
+                "epoch_time": 1628787604,
+                "event": "Started win_post_install (win-post-install-20210812-170003-9606)",
+                "status": "started",
+                "time": "08-12-2021 17:00:04"
+            },
+            {
+                "epoch_time": 1628792109,
+                "event": "win_post_install     successful (win-post-install-20210812-170003-9606)",
+                "status": "started",
+                "time": "08-12-2021 18: 15: 09"
+            },
+            {
+                "epoch_time": 1628792110,
+                "event": "Started create_vm_disks_windows (create-vm-disks-20210812-181510-3550    )",
+                "status": "started",
+                "time": "08-12-2021 18: 15: 10"
+            },
+            {
+                "epoch_time": 1628792435,
+                "event": "create_vm_disks_windows     successful (create-vm-disks-20210812-181510-3550)",
+                "status": "started",
+                "time": "08-12-2021 18: 20: 35"
+            },
+            {
+                "epoch_time": 1628792436,
+                "event": "Started win_install_cleanup (win-install-cleanup-20210812-182035-7036    )",
+                "status": "started",
+                "time": "08-12-2021 18: 20: 36"
+            },
+            {
+                "epoch_time": 1628792557,
+                "event": "win_install_cleanup     successful (win-install-cleanup-20210812-182035-7036)",
+                "status": "started",
+                "time": "08-12-2021 18: 22: 37"
+            },
+            {
+                "epoch_time": 1628792558,
+                "event": "Started sn_start_task_configure_foglight_and_logrhythm (manage-servicenow-tasks-20210812-182238-7584    )",
+                "status": "started",
+                "time": "08-12-2021 18: 22: 38"
+            },
+            {
+                "epoch_time": 1628792560,
+                "event": "Started sn_discovery     (run-sn-discovery-20210812-182239-1216)",
+                "status": "started",
+                "time": "08-12-2021 18: 22: 40"
+            },
+            {
+                "epoch_time": 1628792560,
+                "event": "Started sn_start_task_configure_commvault (manage-servicenow-tasks-20210812-182240-9400    )",
+                "status": "started",
+                "time": "08-12-2021 18: 22: 40"
+            },
+            {
+                "epoch_time": 1628792561,
+                "event": "Started sn_start_task_update_cmdb_win     (manage-servicenow-tasks-20210812-182241-1899)",
+                "status": "started",
+                "time": "08-12-2021 18: 22: 41"
+            },
+            {
+                "epoch_time": 1628792562,
+                "event": "Started sn_close_task_install_os_windows (manage-servicenow-tasks-20210812-182242-4208    )",
+                "status": "started",
+                "time": "08-12-2021 18: 22: 42"
+            },
+            {
+                "epoch_time": 1628792582,
+                "event": "sn_start_task_configure_foglight_and_logrhythm     successful (manage-servicenow-tasks-20210812-182238-7584)",
+                "status": "started",
+                "time": "08-12-2021 18    : 23: 02"
+            },
+            {
+                "epoch_time": 1628792583,
+                "event": "sn_start_task_configure_commvault successful (manage-servicenow-tasks-20210812-182240-9400    )",
+                "status": "started",
+                "time": "08-12-2021 18: 23: 03"
+            },
+            {
+                "epoch_time": 1628792583,
+                "event": "sn_start_task_update_cmdb_win     successful (manage-servicenow-tasks-20210812-182241-1899)",
+                "status": "started",
+                "time": "08-12-2021 18    : 23: 03"
+            },
+            {
+                "epoch_time": 1628792583,
+                "event": "sn_close_task_install_os_windows successful (manage-servicenow-tasks-20210812-182242-4208    )",
+                "status": "started",
+                "time": "08-12-2021 18: 23: 03"
+            },
+            {
+                "epoch_time": 1628792584,
+                "event": "Started sn_close_task_configure_commvault     (manage-servicenow-tasks-20210812-182304-7372)",
+                "status": "started",
+                "time": "08-12-2021 18: 23: 04"
+            },
+            {
+                "epoch_time": 1628792624,
+                "event": "sn_close_task_configure_commvault successful (manage-servicenow-tasks-20210812-182304-7372    )",
+                "status": "started",
+                "time": "08-12-2021 18: 23: 44"
+            }
+        ],
+        "type": "job"
+    }
+}

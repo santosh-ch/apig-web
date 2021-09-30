@@ -35,8 +35,10 @@ const ReviewModeList = () => {
 
     function removeFromReviewModeList(mf) {
         let url = '/api/v1/jobs/removefromreviewmodelist/' + mf;
-        fetch(url).then(() => {
-            fetchReviewModeList();
+        fetch(url).then((response) => {
+            if (response != null && response.result != null && response.result.length > 0) {
+                setReviewModeList(response.result);
+            }
             setJobName('');
         });
       }

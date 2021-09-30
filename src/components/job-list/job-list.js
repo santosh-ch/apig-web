@@ -30,8 +30,8 @@ const JobList = props => {
 	}, [])
 
 	function searchJobs() {
-		const filterUrl = "/api/v1/search/?days=" + duration + "&status=" + status;
-		fetch(filterUrl).then(response => {
+		// const filterUrl = "/api/v1/search/?days=" + duration + "&status=" + status;
+		fetch('../api/search.json').then(response => {
 			return response.json().then((response) => {
 				if (response != null && response.data != null && response.data.length > 0) {
 					if (searchString && searchString != '') {

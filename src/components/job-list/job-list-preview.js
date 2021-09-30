@@ -19,22 +19,22 @@ const JobListPreview = props => {
     }
 
     function removeJob() {
-        var remUrl = '/api/v1/job/remove/' + props.jobName;
+        const remUrl = '/api/v1/job/remove/' + props.jobName;
         fetch(remUrl);
     }
 
     function resumeJob() {
-        var resumeUrl = '/api/v1/job/resume/' + props.jobName;
+        const resumeUrl = '/api/v1/job/resume/' + props.jobName;
         fetch(resumeUrl);
     }
 
     function pauseJob() {
-        var pauseUrl = '/api/v1/job/pause/' + props.jobName;
+        const pauseUrl = '/api/v1/job/pause/' + props.jobName;
         fetch(pauseUrl);
     }
 
     function approveJob() {
-        var approveUrl = '/api/v1/job/approve/' + props.jobName;
+        const approveUrl = '/api/v1/job/approve/' + props.jobName;
         fetch(approveUrl);
     }
 
@@ -46,7 +46,7 @@ const JobListPreview = props => {
             {jobDetails ?
                 <Offcanvas.Body>
                     <Row className="preview card-body">
-                        <a href={"/jobs/" + props.jobName}>{props.jobName}</a>
+                        <a href={"/detail/" + props.jobName}>{props.jobName}</a>
 
                         <h6 className="standardMargin">Quick Actions</h6>
                         <p>
@@ -66,7 +66,7 @@ const JobListPreview = props => {
 
                         <h6 className="standardMargin">Micro Function</h6>
                         <p>
-                            <a href={"/microfunctions/" + jobDetails['microfunction']}>{jobDetails['microfunction']}</a>
+                            <a href={"/microfunction/" + jobDetails['microfunction']}>{jobDetails['microfunction']}</a>
                         </p>
 
                         <h6 className="standardMargin">Request</h6>

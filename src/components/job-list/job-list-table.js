@@ -51,7 +51,7 @@ const JobListTable = props => {
                             {jobSearchResults.map(job =>
                                 <tr key={job.apig_jid}>
                                     <td>
-                                        <a href={"/details/" + job.apig_jid}>{job.apig_jid}
+                                        <a href={"/detail/" + job.apig_jid}>{job.apig_jid}
                                             {job?.children_jobs ?
                                                 <div>
                                                     <span className="badge badge-primary">Conductor</span>
@@ -72,7 +72,7 @@ const JobListTable = props => {
                             {Object.keys(jobSearchResults).map(job =>
                                 <tr key={job}>
                                     <td>
-                                        <a href={"/details/" + job}>{job}
+                                        <a href={"/detail/" + job}>{job}
                                             {jobSearchResults[job]['constraints'] ?
                                                 Object.keys(jobSearchResults[job]['constraints']).map(constraint =>
                                                     <div key={constraint}>

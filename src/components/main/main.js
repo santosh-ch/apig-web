@@ -13,7 +13,7 @@ const Main = () => (
 				<Redirect to={"/list/"+JobListType.Active} />
 			</Route>
 			<Route path='/list' component={lists} />
-			<Route path='/detail' component={JobDetail} />
+			<Route path='/detail/:id' component={JobDetail} />
 			<Route path='/settings' component={Settings} />
 			<Route path='/hometabs' component={HomeTabs} />
 			<Route path="**"><Redirect to={"/list/"+JobListType.Active} /></Route>
