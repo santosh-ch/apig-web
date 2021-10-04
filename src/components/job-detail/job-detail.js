@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Tabs, Tab, Container, Row, Alert } from 'react-bootstrap';
 import ChildrenJobDetail from './children-job-detail';
 import DownstreamResponse from './downstream-response';
+// import JobDetailHeader from './job-detail-header';
 import Inputs from './inputs';
 import Outputs from './outputs';
 import ServiceResponse from './service-response';
 import TimeLine from './timeline';
 import PropTypes from 'prop-types';
+import './job-detail.scss';
+import Constraint from './constraint';
 
 
 const JobDetail = (props) => {
@@ -16,7 +19,7 @@ const JobDetail = (props) => {
 	const [constraints, setConstraints] = useState({})
 
 	useEffect(() => {
-		jid = "asp-infrastructure-20210812-164248-3370"; //need to remove later
+		jid = "asp-infrastructure-20210812-164248-3370.json"; //need to remove later
 		getJobDetail();
 	}, [])
 
@@ -58,6 +61,18 @@ const JobDetail = (props) => {
 		<Container className="margin-top-10">
 			{isValidJob() ?
 				<Row>
+					<Row>
+						<h1 className="card-title"><a href={"/microfunctions/" + data['microfunction']}>{data['microfunction']}</a></h1>
+						<h4 className="card-subtitle text-muted">{jid}</h4>
+						<h6 className="text-muted">
+							{data['status'].toLowerCase() == 'successful' ? <span className="text-success"><strong>{data['status']}</strong></span> :
+								data['status'].toLowerCase() == 'started' ? <span className="text-info"><strong>{data['status']}</strong></span> :
+									data['status'].toLowerCase() == 'pending' ? <span className="text-primary"><strong>{data['status']}</strong></span> :
+										data['status'].toLowerCase() == 'failed' ? <span className="text-danger"><strong>{data['status']}</strong></span> :
+											data['status'].toLowerCase() == 'orphaned' ? <span className="text-danger"><strong>{data['status']}</strong></span> :
+												data['status'].toLowerCase() == 'terminated' ? <span className="text-warning"><strong>{data['status']}</strong></span> : ''}
+						</h6>
+					</Row>
 					<Tabs
 						id="controlled-tab"
 						activeKey={key}
@@ -72,7 +87,7 @@ const JobDetail = (props) => {
 						</Tab>
 
 						<Tab eventKey="3" title="Constraints">
-							<Outputs constraints={constraints} />
+							<Constraint constraints={constraints} data={data}/>
 						</Tab>
 
 						<Tab eventKey="4" title="Outputs">
@@ -94,7 +109,7 @@ const JobDetail = (props) => {
 				</Row>
 				: <Row>
 					<Alert variant="warning">
-								CANNOT FIND JOB
+						CANNOT FIND JOB
 					</Alert>
 				</Row>
 			}
