@@ -1,125 +1,212 @@
-import React, { useState, useEffect } from 'react';
-import { Tabs, Tab, Container, Row, Alert } from 'react-bootstrap';
-import ChildrenJobDetail from './children-job-detail';
-import DownstreamResponse from './downstream-response';
-// import JobDetailHeader from './job-detail-header';
-import Inputs from './inputs';
-import Outputs from './outputs';
-import ServiceResponse from './service-response';
-import TimeLine from './timeline';
-import PropTypes from 'prop-types';
-import './job-detail.scss';
-import Constraint from './constraint';
+import React, { useState, useEffect } from "react";
+import "./job-details.scss";
+import ChildrenJobs from "./children-jobs";
+import FailureResults from "./failure-results";
+import Timeline from "./timeline";
+import DownstreamResponse from "./downstream-response";
+import { Row, Container, Tab, Tabs, Alert } from "react-bootstrap";
+import Inputs from "./inputs";
+import Outputs from "./outputs";
+import Constraints from "./constraints";
+import Owners from "./owners";
+import JobDuration from "./job-duration";
 
+const JobDetails = (props) => {
+  let jid = props?.match?.params?.id;
+  const [key, setKey] = useState("home");
+  const [data, setData] = useState({});
+  const [constraints, setConstraints] = useState({});
 
-const JobDetail = (props) => {
-	let jid = props?.match?.params?.id;
-	const [key, setKey] = useState('home');
-	const [data, setData] = useState({});
-	const [constraints, setConstraints] = useState({})
+  useEffect(() => {
+    getJidData();
+  }, []);
 
-	useEffect(() => {
-		jid = "asp-infrastructure-20210812-164248-3370.json"; //need to remove later
-		getJobDetail();
-	}, [])
+  function getJidData() {
+    fetch("/api/jobs/" + jid)
+      .then((response) => {
+        return response.json().then((response) => {
+          console.log(response);
+          if (response != null && response.data == null) {
+            //response.data exists for 500 status code
+            setData(response);
+            let constraints = {};
+            if (response["constraints"]) {
+              var fetchedConstraintsList = response["constraints"];
+              for (var i = 0; i < fetchedConstraintsList.length; i++) {
+                var type = fetchedConstraintsList[i]["type"];
+                var val = fetchedConstraintsList[i]["attributes"];
+                constraints[type] = val;
+              }
+            }
+            setConstraints(constraints);
+          }
+        });
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
 
-	function getJobDetail() {
-		fetch('../api/' + jid).then(response => {
-			return response.json().then((response) => {
-				if (response != null && response.data != null) {
-					setData(response.data);
-					let constraints = {};
-					if (response.data['constraints']) {
-						var fetchedConstraintsList = response.data['constraints'];
-						for (var i = 0; i < fetchedConstraintsList.length; i++) {
-							var type = fetchedConstraintsList[i]['type'];
-							var val = fetchedConstraintsList[i]['attributes'];
-							constraints[type] = val;
-						}
-					}
-					setConstraints(constraints);
-				}
-			})
-		}).catch(
-			function (err) {
-				console.log(err)
-			}
-		);
-	}
+  function isValidJob() {
+    if (data.hasOwnProperty("apig_jid")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-	function isValidJob() {
-		// eslint-disable-next-line no-prototype-builtins
-		if (data.hasOwnProperty("apig_jid")) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+  function isPending() {
+    if (data.status === "pending") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  function isRunning() {
+    if (data.status === "started") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-	return (
-		<Container className="margin-top-10">
-			{isValidJob() ?
-				<Row>
-					<Row>
-						<h1 className="card-title"><a href={"/microfunctions/" + data['microfunction']}>{data['microfunction']}</a></h1>
-						<h4 className="card-subtitle text-muted">{jid}</h4>
-						<h6 className="text-muted">
-							{data['status'].toLowerCase() == 'successful' ? <span className="text-success"><strong>{data['status']}</strong></span> :
-								data['status'].toLowerCase() == 'started' ? <span className="text-info"><strong>{data['status']}</strong></span> :
-									data['status'].toLowerCase() == 'pending' ? <span className="text-primary"><strong>{data['status']}</strong></span> :
-										data['status'].toLowerCase() == 'failed' ? <span className="text-danger"><strong>{data['status']}</strong></span> :
-											data['status'].toLowerCase() == 'orphaned' ? <span className="text-danger"><strong>{data['status']}</strong></span> :
-												data['status'].toLowerCase() == 'terminated' ? <span className="text-warning"><strong>{data['status']}</strong></span> : ''}
-						</h6>
-					</Row>
-					<Tabs
-						id="controlled-tab"
-						activeKey={key}
-						onSelect={(k) => setKey(k)}
-						className="mb-3">
-						<Tab eventKey="1" title="Children Jobs" hidden={!data['apig-payload']['inputs']['upstream_jid']}>
-							<ChildrenJobDetail data={data} />
-						</Tab>
+  function hasUpstreamJob() {
+    var payload = data["apig-payload"]["inputs"];
+    if (payload.hasOwnProperty("upstream_jid")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-						<Tab eventKey="2" title="Inputs">
-							<Inputs data={data} />
-						</Tab>
+  function hasChildrenJobs() {
+    if (data.hasOwnProperty("children_jobs")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-						<Tab eventKey="3" title="Constraints">
-							<Constraint constraints={constraints} data={data}/>
-						</Tab>
+  function isCurrentlyFailed() {
+    var FAILURE_STATUSES = ["failed"];
+    if (FAILURE_STATUSES.includes(data["status"])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-						<Tab eventKey="4" title="Outputs">
-							<Outputs data={data} />
-						</Tab>
-
-						<Tab eventKey="5" title="Service Response">
-							<ServiceResponse data={data} />
-						</Tab>
-
-						<Tab eventKey="6" title="Downstream Response">
-							<DownstreamResponse data={data} />
-						</Tab>
-
-						<Tab eventKey="7" title="TimeLine">
-							<TimeLine data={data} />
-						</Tab>
-					</Tabs>
-				</Row>
-				: <Row>
-					<Alert variant="warning">
-						CANNOT FIND JOB
-					</Alert>
-				</Row>
-			}
-		</Container>
-	);
-}
-const JobDetailPropTypes = {
-	match: PropTypes.object
+  return (
+    <Container className="margin-top-10">
+      {isValidJob() ? (
+        <Row>
+          <Row>
+            <h1 class="card-title">
+              <a href={"/microfunctions/" + data["microfunction"]}>
+                {data["microfunction"]}
+              </a>
+            </h1>
+            <h4 class="card-subtitle text-muted apig-job-subtitle">{jid}</h4>
+            <h6 class="text-muted">
+              {data["status"].toLowerCase() === "successful" ? (
+                <span className="apig-jobs-status text-success">
+                  <strong>{data["status"]}</strong>
+                </span>
+              ) : data["status"].toLowerCase() === "started" ? (
+                <span className="apig-jobs-status text-info">
+                  <strong>{data["status"]}</strong>
+                </span>
+              ) : data["status"].toLowerCase() === "pending" ? (
+                <span className="apig-jobs-status text-primary">
+                  <strong>{data["status"]}</strong>
+                </span>
+              ) : data["status"].toLowerCase() === "failed" ? (
+                <span className="apig-jobs-status text-danger">
+                  <strong>{data["status"]}</strong>
+                </span>
+              ) : data["status"].toLowerCase() === "orphaned" ? (
+                <span className="apig-jobs-status text-danger">
+                  <strong>{data["status"]}</strong>
+                </span>
+              ) : data["status"].toLowerCase() === "terminated" ? (
+                <span className="apig-jobs-status text-warning">
+                  <strong>{data["status"]}</strong>
+                </span>
+              ) : (
+                ""
+              )}
+            </h6>
+          </Row>
+          <Tabs
+            id="controlled-tab"
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
+            className="mb-3"
+          >
+            <Tab eventKey="home" title="Home">
+              <div
+                class="flex-container flex-container-sm"
+                id="job-flex-container"
+              >
+                <div
+                  class="flex-container flex-container-sm"
+                  id="job-container-left"
+                >
+                  <Inputs data={data} />
+                  {isPending() ? <Constraints constraints={constraints} /> : ""}
+                </div>
+                <div
+                  class="flex-container flex-container-sm"
+                  id="job-container-right"
+                >
+                  <Owners owners={data["owners"]} />
+                  {!isPending() && !isRunning() ? (
+                    <JobDuration duration={data["job_duration_seconds"]} />
+                  ) : (
+                    ""
+                  )}
+                  {data["build_params"] || data["registeredVars"] ? (
+                    <Outputs data={data} />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+            </Tab>
+            {hasUpstreamJob() || hasChildrenJobs() ? (
+              <Tab eventKey="children-jobs" title="Children Jobs">
+                <ChildrenJobs data={data} />
+              </Tab>
+            ) : (
+              ""
+            )}
+            {data["downstream_response"] ? (
+              <Tab eventKey="downstream-response" title="Downstream Response">
+                <DownstreamResponse response={data["downstream_response"]} />
+              </Tab>
+            ) : (
+              ""
+            )}
+            {isCurrentlyFailed() ? (
+              <Tab eventKey="failure-results" title="Failure Results">
+                <FailureResults result={data["failuresResults"]} />
+              </Tab>
+            ) : (
+              ""
+            )}
+            <Tab eventKey="timeline" title="TimeLine">
+              <Timeline data={data} />
+            </Tab>
+          </Tabs>
+        </Row>
+      ) : (
+        <Row>
+          <Alert variant="warning">CANNOT FIND JOB</Alert>
+        </Row>
+      )}
+    </Container>
+  );
 };
 
-JobDetail.propTypes = JobDetailPropTypes;
-
-export default JobDetail;
+export default JobDetails;
