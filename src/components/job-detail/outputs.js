@@ -49,7 +49,7 @@ const Outputs = (props) => {
 }
 
 const OutputsTypes = {
-    data: PropTypes.Object
+    data: PropTypes.object
 };
 
 Outputs.propTypes = OutputsTypes;

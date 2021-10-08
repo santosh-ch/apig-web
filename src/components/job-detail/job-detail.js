@@ -14,7 +14,7 @@ import Constraint from './constraint';
 
 const JobDetail = (props) => {
 	let jid = props?.match?.params?.id;
-	const [key, setKey] = useState('home');
+	const [key, setKey] = useState('1');
 	const [data, setData] = useState({});
 	const [constraints, setConstraints] = useState({})
 
@@ -78,7 +78,8 @@ const JobDetail = (props) => {
 						activeKey={key}
 						onSelect={(k) => setKey(k)}
 						className="mb-3">
-						<Tab eventKey="1" title="Children Jobs" hidden={!data['apig-payload']['inputs']['upstream_jid']}>
+						<Tab eventKey="1" title="Children Jobs" > 
+						{/* hidden={!data['apig-payload']['inputs']['upstream_jid']} */}
 							<ChildrenJobDetail data={data} />
 						</Tab>
 

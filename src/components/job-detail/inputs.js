@@ -17,7 +17,7 @@ const Inputs = (props) => {
 }
 
 const InputsTypes = {
-    data: PropTypes.Object
+    data: PropTypes.object
 };
 
 Inputs.propTypes = InputsTypes;
