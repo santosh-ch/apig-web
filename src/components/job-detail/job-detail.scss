@@ -1,9 +1,77 @@
-/* todo: delete file if not needed */
-.card-title{
-    text-transform : uppercase;
-    font-size: 22px;
+.apig-job-subtitle {
+  margin-bottom: 1em;
 }
 
-.text-muted{
-    font-size: 16px;
+.card-title {
+  text-transform: uppercase;
+  font-size: 22px;
+}
+
+.text-muted {
+  font-size: 16px;
+}
+
+.apig-jobs-status,
+.apig-jobs-constraint-badge {
+  text-transform: uppercase;
+}
+
+.job-constraint-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.code {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-left: 3px solid #f36d33;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+}
+
+.job-card {
+  margin-right: 16px;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.flex-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.flex-container-sm {
+  justify-content: space-between;
+}
+
+#job-flex-container {
+  align-items: flex-start;
+}
+
+.job-list-item:hover {
+  background-color: grey;
+  cursor: pointer;
+}
+
+.job-child-job-container {
+  -moz-transition: height 0.5s;
+  -ms-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  height: 0;
+  overflow: hidden;
 }
