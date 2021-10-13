@@ -12,22 +12,21 @@ const InputsEditModal = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    Edit Job
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h5 className="card-title">Edit Job</h5>
                 <h6 className="card-subtitle text-muted">{props?.data?.jid}</h6>
 
                 <p className="text-info">{props?.data['orig-req-path']}</p>
 
-                <div style={{marginBottom: '24px'}} className="form-group">
+                <div style={{ marginBottom: '24px' }} className="form-group">
                     <p><strong>Edit Inputs</strong></p>
                     <div id="edit-input-container">
                     </div>
                 </div>
 
-                <span id="edit-add-input-btn" className="btn btn-primary" style={{width: '100%', marginBottom: '24px'}}>Add Input</span>
+                <span id="edit-add-input-btn" className="btn btn-primary" style={{ width: '100%', marginBottom: '24px' }}>Add Input</span>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={() => { props.onHide; }}>Save Changes</Button>
