@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { toggleCollapse } from '../../common/utils';
 
@@ -80,7 +80,7 @@ const ChildrenJobDetail = (props) => {
 
     }, [])
     return (
-        <Container>
+        <Row>
                 {props?.data['apig-payload']['inputs']['upstream_jid'] ?
                         <Row>
                             <h5 className="card-title">Parent Job</h5>
@@ -127,7 +127,7 @@ const ChildrenJobDetail = (props) => {
                             </li>)}
                     </ul>
                 </Row> : ''}
-        </Container>
+        </Row>
     );
 }
 

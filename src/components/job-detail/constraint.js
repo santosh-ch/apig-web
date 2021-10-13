@@ -2,6 +2,8 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import { jsonify } from "../../common/utils";
 import "./job-detail.scss";
+import PropTypes from 'prop-types';
+
 
 const Constraint = (props) => {
   return (
@@ -19,5 +21,11 @@ const Constraint = (props) => {
     </Row>
   );
 };
+
+const ConstraintTypes = {
+  constraints: PropTypes.object
+};
+
+Constraint.propTypes = ConstraintTypes;
 
 export default Constraint;

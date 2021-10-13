@@ -400,7 +400,7 @@
             "freligh.w.dalrymple@healthpartners.com"
         ],
         "requires_approval": false,
-        "status": "started",
+        "status": "pending",
         "timeline": [
             {
                 "epoch_time": 1628786568,
